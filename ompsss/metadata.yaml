@@ -1,0 +1,4 @@
+name: ompss
+summary: "OMPSS working nod"
+description: |
+    OMPSS nod for compiling and executing programs

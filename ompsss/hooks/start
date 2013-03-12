@@ -1,0 +1,4 @@
+#!/bin/bash
+
+juju-log "Starting ompss"
+sudo service ompss start

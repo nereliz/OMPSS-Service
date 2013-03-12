@@ -1,0 +1,38 @@
+#!/bin/bash
+
+juju-log "Installing ompss working node"
+set -eu # -x for verbose logging to juju debug-log
+
+juju-log "apt-get install git"
+sudo apt-get -y install git
+
+juju-log "Cloning repository"
+sudo git clone https://github.com/nereliz/OMPSS-Server.git /usr/local/OMPSS.git
+
+juju-log "Creating semilinks"
+sudo ln -s /usr/local/OMPSS.git/ompss /etc/ompss
+sudo ln -s /etc/ompss/ini.d/ompss /etc/init.d/ompss
+
+juju-log "Enabling 4645 port"
+#sudo ufw enable
+#sudo allow 4645
+open-port 4645
+
+juju-log "Installing Qt4 libraries"
+sudo apt-get -y install libqt4-*
+
+juju-log "Installing mysql-client"
+sudo apt-get -y install mysql-client
+
+juju-log "Installing make"
+sudo apt-get -y install make
+
+juju-log "Installing c++ compiler"
+sudo apt-get -y install g++
+
+juju-log "Installing java runtime"
+sudo apt-get -y install openjdk-6-jre
+sudo apt-get -y install openjdk-6-jdk
+
+juju-log "Installing fortran compiler"
+sudo apt-get -y install gfortran
