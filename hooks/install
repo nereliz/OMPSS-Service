@@ -8,7 +8,7 @@ sudo apt-get -y install git
 
 
 juju-log "Cloning repository"
-if [ -d "/usr/local/OMPSS.git" ]
+if [ -d "/usr/local/OMPSS.git" ]; then
    sudo rmdir /usr/local/OMPSS.git
 fi
 sudo git clone https://github.com/nereliz/OMPSS-Server.git /usr/local/OMPSS.git
