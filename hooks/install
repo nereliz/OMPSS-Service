@@ -9,13 +9,18 @@ sudo apt-get -y install git
 
 juju-log "Cloning repository"
 if [ -d "/usr/local/OMPSS.git" ]; then
-   sudo rmdir /usr/local/OMPSS.git
+   sudo rm -Rf /usr/local/OMPSS.git
 fi
 sudo git clone https://github.com/nereliz/OMPSS-Server.git /usr/local/OMPSS.git
-
+sleep 3
 juju-log "Creating semilinks"
-sudo ln -s /usr/local/OMPSS.git/ompss /etc/ompss
-sudo ln -s /etc/ompss/ini.d/ompss /etc/init.d/ompss
+if [ ! -L "/etc/ompss" ]; then
+   sudo ln -s /usr/local/OMPSS.git/ompss /etc/ompss
+fi
+
+if [ ! -f "/etc/init.d/ompss" ]; then
+   sudo ln /etc/ompss/ini.d/ompss /etc/init.d/ompss
+fi
 
 juju-log "Enabling 4645 port"
 #sudo ufw enable
