@@ -18,8 +18,8 @@ if [ ! -L "/etc/ompss" ]; then
    sudo ln -s /usr/local/OMPSS.git/ompss /etc/ompss
 fi
 
-if [ ! -f "/etc/init.d/ompss" ]; then
-   sudo ln /etc/ompss/ini.d/ompss /etc/init.d/ompss
+if [ ! -f "/etc/ompss/init.d/ompss" ]; then
+   sudo ln /etc/ompss/init.d/ompss /etc/init.d/ompss
 fi
 
 juju-log "Enabling 4645 port"
