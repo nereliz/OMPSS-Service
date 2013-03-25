@@ -12,7 +12,7 @@ if [ -d "/usr/local/OMPSS.git" ]; then
    sudo rm -Rf /usr/local/OMPSS.git
 fi
 sudo git clone https://github.com/nereliz/OMPSS-Server.git /usr/local/OMPSS.git
-sleep 3
+
 juju-log "Creating semilinks"
 if [ ! -L "/etc/ompss" ]; then
    sudo ln -s /usr/local/OMPSS.git/ompss /etc/ompss
