@@ -13,19 +13,20 @@ if [ -d "/usr/local/OMPSS.git" ]; then
 fi
 sudo git clone https://github.com/nereliz/OMPSS-Server.git /usr/local/OMPSS.git
 
-juju-log "Creating semilinks"
+juju-log "Creating symilinks"
 if [ ! -L "/etc/ompss" ]; then
    sudo ln -s /usr/local/OMPSS.git/ompss /etc/ompss
 fi
 
-if [ ! -f "/etc/ompss/init.d/ompss" ]; then
-   sudo ln /etc/ompss/init.d/ompss /etc/init.d/ompss
+if [ ! -L "/etc/init.d/ompss" ]; then
+   sudo ln -s /etc/ompss/init.d/ompss /etc/init.d/ompss
 fi
 
-juju-log "Enabling 4645 port"
+juju-log "Enabling 4645 and 3306 ports"
 #sudo ufw enable
 #sudo allow 4645
 open-port 4645
+open-port 3306
 
 juju-log "Installing Qt4 libraries"
 sudo apt-get -y install libqt4-*
