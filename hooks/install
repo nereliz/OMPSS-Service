@@ -1,16 +1,17 @@
 #!/bin/bash
 
 #NFS Servers ip
-NFS    = true
-NFSSRV = '192.168.1.14'
+NFS=true
+NFSSRV='192.168.1.14'
 
 juju-log "Installing ompss working node"
 set -eu # -x for verbose logging to juju debug-log
 
-if [ $NFS ]; then
+if $NFS; then
    juju-log "mounting binary dir"
    sudo apt-get -y install nfs-common
    if [ -d "/srv/ompss" ]; then
+      sudo umount /srv/ompss
       sudo rm -Rf /srv/ompss
    fi
    sudo mkdir /srv/ompss
@@ -36,7 +37,7 @@ if [ ! -L "/etc/ompss" ]; then
    sudo ln -s /usr/local/OMPSS.git/ompss /etc/ompss
 fi
 
-if [ $NFS ]; then
+if $NFS; then
    if [ -f /srv/ompss/config.ini ]; then
       sudo rm /etc/ompss/config.ini
       sudo ln -s /srv/ompss/config.ini /etc/ompss/config.ini   
