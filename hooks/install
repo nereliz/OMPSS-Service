@@ -1,7 +1,25 @@
 #!/bin/bash
 
+#NFS Servers ip
+NFS    = true
+NFSSRV = '192.168.1.14'
+
 juju-log "Installing ompss working node"
 set -eu # -x for verbose logging to juju debug-log
+
+if [ $NFS ]; then
+   juju-log "mounting binary dir"
+   sudo apt-get -y install nfs-common
+   if [ -d "/srv/ompss" ]; then
+      sudo rm -Rf /srv/ompss
+   fi
+   sudo mkdir /srv/ompss
+   sudo chmod 777 /srv/ompss
+   sudo mount $NFSSRV:/srv/nfs4/ompss /srv/ompss
+
+   echo "$NFSSRV:/srv/nfs4/ompss /srv/ompss nfs auto 0 0" >> /etc/fstab
+fi
+
 
 juju-log "apt-get install git"
 sudo apt-get -y install git
@@ -17,6 +35,14 @@ juju-log "Creating symilinks"
 if [ ! -L "/etc/ompss" ]; then
    sudo ln -s /usr/local/OMPSS.git/ompss /etc/ompss
 fi
+
+if [ $NFS ]; then
+   if [ -f /srv/ompss/config.ini ]; then
+      sudo rm /etc/ompss/config.ini
+      sudo ln -s /srv/ompss/config.ini /etc/ompss/config.ini   
+   fi
+fi
+
 
 if [ ! -L "/etc/init.d/ompss" ]; then
    sudo ln -s /etc/ompss/init.d/ompss /etc/init.d/ompss
