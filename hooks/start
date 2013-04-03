@@ -2,3 +2,4 @@
 
 juju-log "Starting ompss"
 sudo service ompss start
+sudo update-rc.d ompss defaults

@@ -1,3 +1,4 @@
 #!/bin/bash
 juju-log "Stopping ompss"
 sudo service ompss stop
+sudo update-rc.d ompss remove
