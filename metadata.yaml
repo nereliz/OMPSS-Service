@@ -2,3 +2,8 @@ name: ompss
 summary: "OMPSS working nod"
 description: |
     OMPSS nod for compiling and executing programs
+peers:
+    ompssc: 
+        limit: "none"
+        optional: "true"
+        scope: "global"
