@@ -8,7 +8,7 @@ juju-log "Installing ompss working node"
 set -eu # -x for verbose logging to juju debug-log
 
 if $NFS; then
-   juju-log "mounting binary dir"
+   juju-log "mounting NFS directory"
    sudo apt-get -y install nfs-common
    if [ -d "/srv/ompss" ]; then
       sudo umount /srv/ompss
@@ -37,21 +37,20 @@ if [ ! -L "/etc/ompss" ]; then
    sudo ln -s /usr/local/OMPSS.git/ompss /etc/ompss
 fi
 
-if $NFS; then
-   if [ -f /srv/ompss/config.ini ]; then
-      sudo rm /etc/ompss/config.ini
-      sudo ln -s /srv/ompss/config.ini /etc/ompss/config.ini   
-   fi
-fi
-
-
 if [ ! -L "/etc/init.d/ompss" ]; then
    sudo ln -s /etc/ompss/init.d/ompss /etc/init.d/ompss
 fi
 
+juju-log "Cheking and taking settings form NFS if posible"
+if $NFS; then
+   if [ -f /srv/ompss/config.ini ]; then
+      sudo rm /etc/ompss/config.ini
+      sudo ln -s /srv/ompss/config.ini /etc/ompss/config.ini   
+      juju-log "Using settings from NFS"	
+   fi
+fi
+
 juju-log "Enabling 4645 and 3306 ports"
-#sudo ufw enable
-#sudo allow 4645
 open-port 4645
 open-port 3306
 
