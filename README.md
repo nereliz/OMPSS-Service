@@ -1,8 +1,8 @@
 OMPSS-Service
 ==============
 
-Paslauga skirta internetinio matematinio programavimo ir projektavimo serverines paslaugos idiegimui i *OpenStak* debesies platforma.
-Sis projektas neturi iseities minetos serverines paslaugos iseities kodu. 
+Internetinio matematinio programavimo ir projektavimo serverines paslaugos diegimo i *OpenStak* debesies platforma skriptai.
+Sis projektas neturi minetos serverines paslaugos iseities kodu. 
 
 Internetinio matematinio programavimo ir projektavimo serverines paslaugos projekta galima rasti pasinaudojus sia nuoroda:
 https://github.com/nereliz/OMPSS-Server
