@@ -21,4 +21,4 @@ Tokiu budu bus galima suvienodinti visu darbiniu mazgu nustatymus.
 
 Copyright (c) 2010 - 2013 Nerijus Barauskas
 
-Projektas reazlizuotas kaip dalis baigimojo magistraturos darbo Siauliu Universitete.
+Projektas realizuotas kaip dalis baigimojo magistraturos darbo Siauliu Universitete.
