@@ -33,7 +33,7 @@ Konfiguravimas:
 --------------
 
 Vienintelis galimas konfiguravimas tai *NFS* paslaugos palaikymo igalinimas. Ir *NFS* serverio IP adreso nustatymas.
-Jeigu *NFS*paslauga nera igalinta IP adresas bus ignoruojamas.
+Jeigu *NFS* paslauga nera igalinta IP adresas bus ignoruojamas.
 
 Pastaba:
 -------
